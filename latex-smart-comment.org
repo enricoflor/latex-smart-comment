@@ -1,0 +1,48 @@
+#+title: LaTeX-smart-comment.el
+#+author: Enrico Flor
+
+This package provides two interactive commands that make commenting
+and uncommenting text in ~latex-mode~ a bit smarter and, of course, as
+automated as possible.  Here are the two docstrings:
+
+#+begin_example
+This package defines two interactive commands.
+
+The command `latex-smart-comment-dwim' has four cases:
+
+  1) region is not active, and
+     point is not in a comment, and
+     point is at the end of the line, or there is only whitespace
+     between point and the end of the line;
+
+  2) region is not active, and
+     point is not in a comment;
+
+  3) region is not active;
+
+  4) region is active.
+
+In case 1), `comment-dwim' is called, which will insert an inline
+comment.  In case 2), the line where point is on is commented.
+In case 3), the current line is uncommented.  In case 4),
+`latex-smart-comment-do-region' is called on the active region.
+
+`latex-smart-comment-do-region' also works on a discontinuous
+region (such that the return value of `region-bounds' contains more
+than one cons cell), and throws an error in four cases:
+
+  1) the region is not active;
+
+  2) the continuous region is neither fully commented nor
+     uncommented;
+
+  3) the discontinous region either contains a section that
+     violates condition 2);
+
+  4) the sections of the discontinuous region are not either all
+     commented or all uncommented.
+
+When all these conditions are met, the effect of this command is
+to change the status of the region: if it's commented, it
+uncomments it; if it is uncommented, it comments it.
+#+end_example
